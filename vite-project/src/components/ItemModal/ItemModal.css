@@ -1,0 +1,24 @@
+.modal__content_type_image {
+  padding: 0;
+  max-width: 498px;
+}
+
+.modal__footer {
+  padding: 20px 32px 32px;
+}
+
+.modal__weather {
+  margin-bottom: 32px;
+  margin-left: 32px;
+}
+
+.modal__caption {
+  margin: 20px 0 12px 32px;
+}
+
+.modal__image {
+  width: 498px;
+  height: 498px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
