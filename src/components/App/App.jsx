@@ -100,7 +100,7 @@ function App() {
         <fieldset className="modal__radio-buttons">
           <legend className="modal__legend">Select the weather type:</legend>
           <label
-            htmlFor="Hot"
+            htmlFor="hot"
             className={`modal__label modal__label_type_radio ${
               selectedWeatherType === "hot"
                 ? "modal__label_type_radio--selected"
@@ -117,7 +117,7 @@ function App() {
             Hot
           </label>
           <label
-            htmlFor="Warm"
+            htmlFor="warm"
             className={`modal__label modal__label_type_radio ${
               selectedWeatherType === "warm"
                 ? "modal__label_type_radio--selected"
@@ -134,7 +134,7 @@ function App() {
             Warm
           </label>
           <label
-            htmlFor="Cold"
+            htmlFor="cold"
             className={`modal__label modal__label_type_radio ${
               selectedWeatherType === "cold"
                 ? "modal__label_type_radio--selected"
@@ -156,6 +156,7 @@ function App() {
         activeModal={activeModal}
         card={selectedCard}
         onClose={closeActiveModal}
+        isOpen={activeModal === "add-garment"}
       />
     </div>
   );
