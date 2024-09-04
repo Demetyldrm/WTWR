@@ -32,7 +32,7 @@ function App() {
   };
 
   const handleRadioChange = (event) => {
-    setSelectedWeatherType(event.target.id); // Set the selected radio button ID
+    setSelectedWeatherType(event.target.id);
   };
 
   useEffect(() => {
@@ -78,6 +78,7 @@ function App() {
         buttonText="Add garment"
         activeModal={activeModal}
         onClose={closeActiveModal}
+        isOpen={activeModal === "add-garment"}
       >
         <label htmlFor="name" className="modal__label">
           Name{" "}
