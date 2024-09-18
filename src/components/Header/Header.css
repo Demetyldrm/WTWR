@@ -24,6 +24,12 @@
   gap: 12px;
 }
 
+.header__actions {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+}
+
 .header__date-and-location {
   margin: 0;
 }
@@ -41,4 +47,11 @@
   line-height: 24px;
   text-align: left;
   margin-top: 11px;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
 }
