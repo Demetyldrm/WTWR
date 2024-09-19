@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   visibility: hidden;
+  z-index: 1000;
 }
 
 .modal_opened {
@@ -18,14 +19,16 @@
 .modal__content {
   background-color: white;
   position: relative;
+  box-sizing: border-box;
+  border: none;
   padding: 28px 28px 36px;
   max-width: 496px;
   width: 100%;
-  box-sizing: border-box;
   border-radius: 20px;
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
+  margin: 0 auto;
 }
 
 .modal__title {

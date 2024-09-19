@@ -142,13 +142,13 @@ function App() {
 
           <Footer />
         </div>
-        activeModal === "create" &&
+
         <AddItemModal
           onClose={closeActiveModal}
           isOpen={activeModal === "create"}
           onAddItem={handleOnAddItem}
         />
-        activeModal === "preview" &&
+
         <ItemModal
           activeModal={activeModal}
           card={selectedCard}

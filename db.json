@@ -1,22 +1,10 @@
 {
   "items": [
     {
-      "_id": 6,
-      "name": "Jacket",
-      "weather": "cold",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Jacket.png?etag=f4bb188deaa25ac84ce2338be2d404ad"
-    },
-    {
       "_id": 11,
       "name": "Shorts",
       "weather": "Hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Shorts.png?etag=d728c496643f610de8d8fea92dd915ba"
-    },
-    {
-      "_id": 13,
-      "name": "Sneakers",
-      "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f"
     },
     {
       "_id": 14,
@@ -25,10 +13,22 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sunglasses.png?etag=a1bced9e331d36cb278c45df51150432"
     },
     {
-      "_id": 15,
-      "name": "Sweatshirt",
+      "name": "dadad",
+      "weather": "hot",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1725873536636-9f8133411637?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "_id": 16
+    },
+    {
+      "name": "",
+      "weather": "hot",
+      "imageUrl": "",
+      "_id": 18
+    },
+    {
+      "name": "demet yildirim",
       "weather": "warm",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sweatshirt.png?etag=008a9674757bea2e0bdb31242e364be0"
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1725873536636-9f8133411637?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "_id": 19
     }
   ]
 }

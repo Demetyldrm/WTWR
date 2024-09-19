@@ -1,6 +1,8 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+. WTWR (What to wear right) is an app that is designed to help the users choose what to wear depending on the weather conditions of where they live. Users can add or delete their own clothing cards
+
+.API calls responds to the weather forecast, based on the weather conditions, the app recommends clothing items.
 
 Currently, two official plugins are available:
 
