@@ -10,7 +10,7 @@ import ItemModal from "../../components/ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import AddItemModal from "../../components/AddItemModal/AddItemModal.jsx";
-
+import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 
 function App() {
@@ -41,24 +41,24 @@ function App() {
     setActiveModal("");
   };
 
-  const handleCardDelete = (card) => {
-    deleteItem(card._id)
+  const handleCardDelete = () => {
+    deleteItem(selectedCard._id)
       .then(() => {
-        setClothingItems((cards) => cards.filter((c) => c._id !== card._id));
-        setSelectedCard({});
+        setClothingItems((prev) =>
+          prev.filter((item) => item._id !== selectedCard._id)
+        );
         closeActiveModal();
       })
       .catch(console.error);
   };
 
   const handleOnAddItem = (item) => {
-    return addItem(item)
+    addItem(item)
       .then((newItem) => {
-        setClothingItems((clothingItems) => [newItem, ...clothingItems]);
-        closeActiveModal();
-        resetForm();
+        setClothingItems([newItem, ...clothingItems]);
+        closeModal();
       })
-      .catch(console.error);
+      .catch((err) => console.log(err));
   };
 
   const handleToggleSwitchChange = () => {
@@ -76,6 +76,14 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
         console.log(filterWeatherData);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -134,27 +142,25 @@ function App() {
 
           <Footer />
         </div>
-        {activeModal === "create" && (
-          <AddItemModal
-            onClose={closeActiveModal}
-            isOpen={activeModal === "create"}
-            onAddItem={handleOnAddItem}
-          />
-        )}
-        {activeModal === "preview" && (
-          <ItemModal
-            activeModal={activeModal}
-            card={selectedCard}
-            onClose={closeActiveModal}
-            isOpen={activeModal === "add-garment"}
-            confirmationModal={handleDeleteCardClick}
-          />
-        )}
+        activeModal === "create" &&
+        <AddItemModal
+          onClose={closeActiveModal}
+          isOpen={activeModal === "create"}
+          onAddItem={handleOnAddItem}
+        />
+        activeModal === "preview" &&
+        <ItemModal
+          activeModal={activeModal}
+          card={selectedCard}
+          onClose={closeActiveModal}
+          isOpen={activeModal === "add-garment"}
+          confirmationModal={handleDeleteCardClick}
+        />
         <DeleteModal
           activeModal={activeModal}
           onClose={closeActiveModal}
           handleCardDelete={handleCardDelete}
-          card={selectedCard}
+          selectedCard={selectedCard}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

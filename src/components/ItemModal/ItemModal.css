@@ -1,24 +1,54 @@
 .modal__content_type_image {
+  background-color: white;
   padding: 0;
-  max-width: 498px;
+  position: relative;
+  margin: auto;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .modal__footer {
-  padding: 20px 32px 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  padding: 0px;
 }
 
 .modal__weather {
+  margin-top: 12px;
   margin-bottom: 32px;
   margin-left: 32px;
+  padding: 0px;
 }
 
 .modal__caption {
-  margin: 20px 0 12px 32px;
+  margin: 20px 0px 0px 32px;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
 }
 
 .modal__image {
   width: 100%;
-  height: 498px;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
   border-radius: 20px 20px 0 0;
+}
+
+.modal__delete {
+  position: relative;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: rgba(255, 77, 0, 1);
+  margin: 20px 0px 0px 32px;
+  border: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  grid-column: 2/3;
+  grid-row: 1;
 }

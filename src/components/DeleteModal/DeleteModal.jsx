@@ -14,9 +14,10 @@ function DeleteModal({ activeModal, onClose, handleCardDelete, selectedCard }) {
       <div className="modal__content modal__content_type_delete">
         <button className="modal__close" type="button" onClick={onClose} />
         <p className="modal__delete__header">
-          Are you sure you want to delete this item?
+          Are you sure you want to delete this item? This action is
+          irreversible.
         </p>
-        <div className="modal__delete__btns">
+        <div className="modal__delete__buttons">
           <button
             className="modal__delete__btn modal__delete__btn_type_delete"
             onClick={onCardDelete}

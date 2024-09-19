@@ -7,7 +7,7 @@
 }
 .header__add-clothes-btn {
   margin-left: auto;
-  margin: 0 20px 0 auto;
+  margin: 0 20px 0 20px;
   color: rgba(0, 0, 0, 1);
   border: none;
   font-family: "Cabinet-Grotesk", arial, sans-serif;
@@ -54,4 +54,7 @@
   align-items: center;
   text-decoration: none;
   color: black;
+}
+.header__avatar {
+  margin-left: 20px;
 }

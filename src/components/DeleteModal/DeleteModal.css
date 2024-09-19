@@ -1,0 +1,56 @@
+.modal__content_type_delete {
+  text-align: center;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.modal__delete__header {
+  font-size: 20px;
+  margin: 0 auto;
+  width: 367px;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+}
+
+.modal__delete__buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-top: 40px; */
+  /* gap: 24px; */
+  font-family: "Cabinet-Grotesk", arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__delete__btn {
+  border: none;
+  background-color: transparent;
+}
+
+.modal__delete__btn:hover {
+  cursor: pointer;
+}
+
+.modal__delete__btn_type_delete {
+  color: rgba(255, 77, 0, 1);
+  padding-top: 40px;
+}
+
+.modal__delete__btn_type_cancel {
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.modal__content_type_delete {
+  width: 670px;
+  height: 280px;
+}
