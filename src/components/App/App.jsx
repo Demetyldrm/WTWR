@@ -56,7 +56,7 @@ function App() {
     addItem(item)
       .then((newItem) => {
         setClothingItems([newItem, ...clothingItems]);
-        closeModal();
+        closeActiveModal();
       })
       .catch((err) => console.log(err));
   };
