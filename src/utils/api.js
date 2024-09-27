@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-const handleServerResponse = (res) => {
+export const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
 };
 
@@ -8,7 +8,7 @@ async function getItems() {
   return fetch(`${baseUrl}/items`).then(handleServerResponse);
 }
 
-async function addItem({ name, imageUrl, weather }) {
+async function addItem({ name, weather, imageUrl }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {

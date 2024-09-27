@@ -1,8 +1,7 @@
-import { APIkey } from "./constants";
 import { handleServerResponse } from "../utils/api.js";
 
 export const getWeather = async ({ latitude, longitude }, APIkey) => {
-  const res = await fetch(
+  return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   ).then(handleServerResponse);
 };
