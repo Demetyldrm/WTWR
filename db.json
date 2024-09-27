@@ -17,6 +17,24 @@
       "weather": "warm",
       "imageUrl": "https://plus.unsplash.com/premium_photo-1725873536636-9f8133411637?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       "_id": 19
+    },
+    {
+      "name": "fdsf",
+      "weather": "warm",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1725873536636-9f8133411637?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "_id": 20
+    },
+    {
+      "name": "dsds",
+      "weather": "hot",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1725873536636-9f8133411637?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "_id": 21
+    },
+    {
+      "name": "erer",
+      "weather": "cold",
+      "imageUrl": "https://plus.unsplash.com/premium_photo-1725873536636-9f8133411637?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "_id": 22
     }
   ]
 }
