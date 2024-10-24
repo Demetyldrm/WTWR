@@ -1,4 +1,4 @@
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";

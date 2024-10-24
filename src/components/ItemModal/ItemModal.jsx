@@ -1,6 +1,6 @@
 import "./ItemModal.css";
 import { useContext } from "react";
-import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./ItemModal.css";
 
 function ItemModal({ isOpen, onClose, card, handleCardDelete }) {
