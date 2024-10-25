@@ -12,7 +12,7 @@ function Main({
   isLiked,
   isLoggedIn,
 }) {
-  const { CurrentTemperatureUnit } = React.useContext(
+  const { currentTemparatureUnit } = React.useContext(
     CurrentTemperatureUnitContext
   );
 
@@ -21,8 +21,8 @@ function Main({
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {weatherData.temp[CurrentTemperatureUnit]}
-          &deg; {CurrentTemperatureUnitContext} / You may want to wear:
+          Today is {weatherData.temp[currentTemparatureUnit]}
+          &deg; {currentTemparatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
           {clothingItems

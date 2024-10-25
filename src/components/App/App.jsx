@@ -172,7 +172,7 @@ function App() {
         setClothingItems(data.reverse());
       })
       .catch(() => {
-        console.log("Error fetching items");
+        console.log("Error");
       });
   }, []);
 
