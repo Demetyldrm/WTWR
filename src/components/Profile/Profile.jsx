@@ -10,6 +10,7 @@ function Profile({
   isLiked,
   handleCardLike,
   isLoggedIn,
+  onSignOut,
 }) {
   return (
     <div className="profile">

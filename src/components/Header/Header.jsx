@@ -10,8 +10,8 @@ function Header({
   weatherData,
   currentTemperatureUnit,
   handleToggleSwitchChange,
-  handleSignupClick,
-  handleLoginClick,
+  handleRegisterModal,
+  handleLoginModal,
   isLoggedIn,
 }) {
   const currentUser = useContext(CurrentUserContext);
@@ -37,7 +37,9 @@ function Header({
           />
 
           <button
-            onClick={handleAddClick}
+            onClick={() => {
+              handleAddClick;
+            }}
             type="button"
             className="header__add-clothes-btn"
           >
@@ -69,10 +71,10 @@ function Header({
         <div className="header__actions">
           <ToggleSwitch />
         </div>
-        <button onClick={handleSignupClick} className="header__signup">
+        <button onClick={handleRegisterModal} className="header__signup">
           Sign Up
         </button>
-        <button onClick={handleLoginClick} className="header__login">
+        <button onClick={handleLoginModal} className="header__login">
           Log In
         </button>
       </header>

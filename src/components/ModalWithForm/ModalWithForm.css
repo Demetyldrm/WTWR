@@ -50,6 +50,7 @@
 .modal__form {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .modal__legend {
@@ -106,4 +107,14 @@
 
 .modal__label_type_radio--selected {
   color: rgba(0, 0, 0, 1);
+}
+.modal__login-btn {
+  width: Hug (73px) px;
+  height: Hug (36px) px;
+  top: 491px;
+  left: 500px;
+  padding: 8px 16px 8px 16px;
+  gap: 8px;
+  border-radius: 4px 0px 0px 0px;
+  opacity: 0px;
 }

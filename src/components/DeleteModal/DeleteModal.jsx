@@ -1,6 +1,11 @@
 import "./DeleteModal.css";
 
-function DeleteModal({ activeModal, onClose, handleCardDelete, selectedCard }) {
+function DeleteModal({
+  activeModal,
+  handleCloseModal,
+  handleCardDelete,
+  selectedCard,
+}) {
   const onCardDelete = () => {
     handleCardDelete(selectedCard);
   };
@@ -12,7 +17,11 @@ function DeleteModal({ activeModal, onClose, handleCardDelete, selectedCard }) {
       }`}
     >
       <div className="modal__content modal__content_type_delete">
-        <button className="modal__close" type="button" onClick={onClose} />
+        <button
+          className="modal__close"
+          type="button"
+          onClick={handleCloseModal}
+        />
         <p className="modal__delete__header">
           Are you sure you want to delete this item? This action is
           irreversible.
@@ -26,7 +35,7 @@ function DeleteModal({ activeModal, onClose, handleCardDelete, selectedCard }) {
           </button>
           <button
             className="modal__delete__btn modal__delete__btn_type_cancel"
-            onClick={onClose}
+            onClick={handleCloseModal}
           >
             Cancel
           </button>

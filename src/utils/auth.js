@@ -10,8 +10,8 @@ export const checkToken = (token) => {
   });
 };
 
-export const register = ({ email, password, name, avatar }) => {
-  return request(`${baseUrl}/signup`, {
+export const signUp = async ({ email, password, name, avatar }) => {
+  const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -19,10 +19,11 @@ export const register = ({ email, password, name, avatar }) => {
     },
     body: JSON.stringify({ email, password, name, avatar }),
   });
+  return handleServerResponse(res);
 };
 
-export const login = ({ email, password }) => {
-  return request(`${baseUrl}/signin`, {
+export const logIn = async ({ email, password }) => {
+  const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -30,21 +31,23 @@ export const login = ({ email, password }) => {
     },
     body: JSON.stringify({ email, password }),
   });
+  return handleServerResponse(res);
 };
 
-export const getUserProfile = () => {
+export const getUserProfile = async () => {
   const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/users/me`, {
+  const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(checkResponse);
+  });
+  return handleServerResponse(res);
 };
 
-export const editProfile = ({ name, avatar }, token) => {
-  return request(`${baseUrl}/users/me`, {
+export const editProfile = async ({ name, avatar }, token) => {
+  const res = await fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -52,4 +55,5 @@ export const editProfile = ({ name, avatar }, token) => {
     },
     body: JSON.stringify({ name, avatar }),
   });
+  return handleServerResponse(res);
 };

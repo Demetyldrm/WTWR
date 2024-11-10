@@ -1,0 +1,12 @@
+.modal__submit_login {
+  color: #0000004d;
+  background-color: #fff;
+  position: absolute;
+  margin-left: 130px;
+  margin-top: 305px;
+  width: Hug (80px) px;
+  height: Hug (40px) px;
+  padding: 10px 0px 0px 0px;
+  gap: 10px;
+  opacity: 0px;
+}

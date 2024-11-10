@@ -3,7 +3,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
 import "./LoginModal.css";
 
-const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
+const LoginModal = ({
+  isOpen,
+  handleCloseModal,
+  onLogIn,
+  openRegisterModal,
+}) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -17,31 +22,23 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
     }));
   };
 
-  function handleLogin(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("logged in");
-    onLogin({ email, password })
-      .then(() => {
-        setEmail("");
-        setPassword("");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
+
+    onLogIn({ email, password });
+  };
 
   return (
     <ModalWithForm
       title="Log in"
       name="login"
       buttonText="Log in"
-      redirectText="or Sign up"
       isOpen={isOpen}
-      onClose={onClose}
-      onSubmit={handleLogin}
+      onClose={handleCloseModal}
+      onSubmit={handleSubmit}
     >
       <label className="modal__label">
-        Email
+        Email{" "}
         <input
           type="email"
           className="modal__input"
@@ -68,10 +65,10 @@ const LoginModal = ({ isOpen, onClose, onLogin, handleRegisterRoute }) => {
       </label>
       <button
         type="button"
-        onClick={handleRegisterRoute}
-        className="modal__login-btn"
+        onClick={openRegisterModal}
+        className="modal__submit modal__submit_signup"
       >
-        Or Sign Up
+        or Sign Up
       </button>
     </ModalWithForm>
   );

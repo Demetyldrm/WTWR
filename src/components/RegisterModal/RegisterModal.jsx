@@ -3,7 +3,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
 import "./RegisterModal.css";
 
-const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
+const RegisterModal = ({
+  isOpen,
+  onRegister,
+  handleCloseModal,
+  openLogin = () => {},
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -24,24 +29,22 @@ const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
   function handleAvatarChange(e) {
     setAvatar(e.target.value);
   }
-  function handleRegister(e) {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("modal submitted");
     onRegister({ email, password, name, avatar });
-  }
+  };
 
   return (
     <ModalWithForm
       isOpen={isOpen}
-      title="Register"
-      name="register"
+      title="Sign Up"
       buttonText="Sign Up"
-      redirectText="or Log in"
-      onClose={onClose}
-      onSubmit={handleRegister}
+      onClose={handleCloseModal}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="email" className="modal__label">
-        Email{""}
+        Email*{""}
         <input
           type="email"
           className="modal__input"
@@ -54,7 +57,7 @@ const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
         />
       </label>
       <label htmlFor="password" className="modal__label">
-        Password{""}
+        Password*{""}
         <input
           type="password"
           className="modal__input"
@@ -67,7 +70,7 @@ const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
         />
       </label>
       <label className="modal__label">
-        Name{""}
+        Name*{""}
         <input
           type="text"
           className="modal__input"
@@ -80,24 +83,25 @@ const RegisterModal = ({ isOpen, onRegister, handleLoginRoute, onClose }) => {
         />
       </label>
       <label className="modal__label">
-        Avatar{""}
+        Avatar URL*{""}
         <input
           type="url"
           className="modal__input"
           id="avatar"
           name="avatar"
-          placeholder="Avatar"
+          placeholder="Avatar URL"
           value={avatar || ""}
           onChange={handleAvatarChange}
           required
         />
       </label>
+
       <button
         type="button"
-        onClick={handleLoginRoute}
-        className="modal__login-btn"
+        onClick={openLogin}
+        className="modal__submit modal__submit_login modal__submit-SingUp"
       >
-        Or Log In
+        or Log In
       </button>
     </ModalWithForm>
   );
