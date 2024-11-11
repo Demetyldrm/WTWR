@@ -1,4 +1,5 @@
-import { baseUrl, handleServerResponse } from "./api";
+import { baseUrl } from "./api";
+import { handleServerResponse } from "./api";
 
 export const checkToken = (token) => {
   return fetch(`${baseUrl}/users/me`, {
@@ -10,19 +11,18 @@ export const checkToken = (token) => {
   });
 };
 
-export const signUp = async ({ email, password, name, avatar }) => {
+async function signUp({ name, password, email, avatar }) {
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, name, avatar }),
-  });
-  return handleServerResponse(res);
-};
+    body: JSON.stringify({ name, password, email, avatar }),
+  }).then(handleServerResponse);
+}
 
-export const logIn = async ({ email, password }) => {
+async function logIn({ email, password }) {
   const res = await fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
@@ -30,23 +30,20 @@ export const logIn = async ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  });
-  return handleServerResponse(res);
-};
+  }).then(handleServerResponse);
+}
 
-export const getUserProfile = async () => {
-  const token = localStorage.getItem("jwt");
-  const res = await fetch(`${baseUrl}/users/me`, {
+function getUserProfile(token) {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  });
-  return handleServerResponse(res);
-};
+  }).then(handleServerResponse);
+}
 
-export const editProfile = async ({ name, avatar }, token) => {
+async function editProfile({ name, avatar }, token) {
   const res = await fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
@@ -54,6 +51,7 @@ export const editProfile = async ({ name, avatar }, token) => {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  });
-  return handleServerResponse(res);
-};
+  }).then(handleServerResponse);
+}
+
+export { signUp, logIn, getUserProfile, editProfile };

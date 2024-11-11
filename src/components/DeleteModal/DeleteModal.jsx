@@ -2,7 +2,7 @@ import "./DeleteModal.css";
 
 function DeleteModal({
   activeModal,
-  handleCloseModal,
+  closeActiveModal,
   handleCardDelete,
   selectedCard,
 }) {
@@ -20,7 +20,7 @@ function DeleteModal({
         <button
           className="modal__close"
           type="button"
-          onClick={handleCloseModal}
+          onClick={closeActiveModal}
         />
         <p className="modal__delete__header">
           Are you sure you want to delete this item? This action is
@@ -35,7 +35,7 @@ function DeleteModal({
           </button>
           <button
             className="modal__delete__btn modal__delete__btn_type_cancel"
-            onClick={handleCloseModal}
+            onClick={closeActiveModal}
           >
             Cancel
           </button>

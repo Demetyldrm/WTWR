@@ -18,6 +18,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { signUp, logIn, getUserProfile, editProfile } from "../../utils/auth";
+import * as auth from "../../utils/auth.js";
 
 function App() {
   const [weatherData, setWeatherData] = useState({
@@ -50,7 +51,7 @@ function App() {
   };
 
   const handleAddClick = () => {
-    setActiveModal("create");
+    setActiveModal("add-garment");
   };
 
   const closeActiveModal = () => {
@@ -126,22 +127,18 @@ function App() {
   };
 
   const onLogIn = ({ email, password }) => {
-    if (!email || !password) {
-      return;
-    }
-
-    return logIn({ email, password }).then((res) => {
-      console.log(res);
-      localStorage.setItem("jwt", res.token);
+    auth.logIn({ email, password }).then((data) => {
+      console.log(data);
+      localStorage.setItem("jwt", data);
       setIsLoggedIn(true);
-      setCurrentUser(res.user);
+      setCurrentUser(true);
       closeActiveModal();
       navigate("/profile");
     });
   };
 
   const onSignOut = () => {
-    localStorage.removeItem("jwt");
+    token.clearToken();
     setIsLoggedIn(false);
     closeActiveModal();
     navigate("/");
@@ -169,6 +166,10 @@ function App() {
   useEffect(() => {
     function handleCloseMethods(evt) {
       if (evt.key === "Escape" || evt.key === "esc") {
+        closeActiveModal();
+      }
+
+      if (evt.type === "click" && evt.target.classList.contains("modal")) {
         closeActiveModal();
       }
 

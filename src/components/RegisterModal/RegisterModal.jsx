@@ -6,13 +6,17 @@ import "./RegisterModal.css";
 const RegisterModal = ({
   isOpen,
   onRegister,
-  handleCloseModal,
-  openLogin = () => {},
+  closeActiveModal,
+  onLogin = () => {},
 }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
+
+  function handleNameChange(e) {
+    setName(e.target.value);
+  }
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -20,10 +24,6 @@ const RegisterModal = ({
 
   function handlePasswordChange(e) {
     setPassword(e.target.value);
-  }
-
-  function handleNameChange(e) {
-    setName(e.target.value);
   }
 
   function handleAvatarChange(e) {
@@ -40,7 +40,7 @@ const RegisterModal = ({
       isOpen={isOpen}
       title="Sign Up"
       buttonText="Sign Up"
-      onClose={handleCloseModal}
+      onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
       <label htmlFor="email" className="modal__label">
@@ -98,9 +98,10 @@ const RegisterModal = ({
 
       <button
         type="button"
-        onClick={openLogin}
+        onClick={onLogin}
         className="modal__submit modal__submit_login modal__submit-SingUp"
       >
+        {" "}
         or Log In
       </button>
     </ModalWithForm>

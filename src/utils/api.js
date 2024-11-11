@@ -43,7 +43,7 @@ async function addCardLike(id, token) {
       authorization: `Bearer ${token}`,
     },
   });
-  return checkResponse(res);
+  return handleServerResponse(res);
 }
 
 async function removeCardLike(id, token) {
@@ -54,7 +54,7 @@ async function removeCardLike(id, token) {
       authorization: `Bearer ${token}`,
     },
   });
-  return checkResponse(res);
+  return handleServerResponse(res);
 }
 
 export const getUserInfo = (token) => {

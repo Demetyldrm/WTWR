@@ -3,12 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
 import "./LoginModal.css";
 
-const LoginModal = ({
-  isOpen,
-  handleCloseModal,
-  onLogIn,
-  openRegisterModal,
-}) => {
+const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onSignUp }) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -25,7 +20,7 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onLogIn({ email, password });
+    onLogIn(data);
   };
 
   return (
@@ -34,7 +29,7 @@ const LoginModal = ({
       name="login"
       buttonText="Log in"
       isOpen={isOpen}
-      onClose={handleCloseModal}
+      onClose={closeActiveModal}
       onSubmit={handleSubmit}
     >
       <label className="modal__label">
@@ -65,7 +60,7 @@ const LoginModal = ({
       </label>
       <button
         type="button"
-        onClick={openRegisterModal}
+        onClick={onSignUp}
         className="modal__submit modal__submit_signup"
       >
         or Sign Up

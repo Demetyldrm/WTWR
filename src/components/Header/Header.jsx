@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import avatar from "../../assets/avatar.svg";
 
 function Header({
   handleAddClick,
@@ -48,10 +49,10 @@ function Header({
 
           <div className="header__user-container">
             <Link to="/profile" className="header__link">
-              <p className="header__username">Demet Yildirim</p>
+              <p className="header__username">{currentUser.name}</p>
               <img
                 src={currentUser.avatar}
-                alt="Terrence Tegegne"
+                alt={currentUser.name}
                 className="header__avatar"
               />
             </Link>
