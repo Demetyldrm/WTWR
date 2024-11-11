@@ -103,10 +103,7 @@ function App() {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
-      .catch((err) => {
-        console.error("Failed to add item:", err.message);
-        console.log("Error details:", err); // Log the full error object
-      });
+      .catch((err) => console.log(err));
   };
 
   async function addItem({ name, weather, imageUrl }) {
@@ -121,7 +118,7 @@ function App() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // Ensure capitalization here
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ name, weather, imageUrl }),
       });
