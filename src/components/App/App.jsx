@@ -103,8 +103,41 @@ function App() {
         setClothingItems([newItem, ...clothingItems]);
         closeActiveModal();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.error("Failed to add item:", err.message);
+        console.log("Error details:", err); // Log the full error object
+      });
   };
+
+  async function addItem({ name, weather, imageUrl }) {
+    const token = localStorage.getItem("jwt");
+    if (!token) {
+      console.error("No JWT token found. Please log in.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${baseUrl}/items`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // Ensure capitalization here
+        },
+        body: JSON.stringify({ name, weather, imageUrl }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Server error:", errorData);
+        throw new Error(`Server responded with status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Fetch error:", error.message);
+      throw error;
+    }
+  }
 
   const handleToggleSwitchState = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
