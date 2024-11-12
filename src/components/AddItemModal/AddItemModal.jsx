@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import "../ModalWithForm/ModalWithForm.css";
 import "./AddItemModal.css";
-import { addItem } from "../../utils/api.js";
 
-const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
+const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
   const [name, setName] = useState("");
   const [imageUrl, setUrl] = useState("");
   const [weather, setSelectedWeatherType] = useState("");
@@ -37,7 +36,7 @@ const AddItemModal = ({ onClose, onAddItem, isOpen }) => {
   return (
     <ModalWithForm
       title="New garment"
-      onClose={onClose}
+      onClose={closeActiveModal}
       isOpen={isOpen}
       onSubmit={handleSubmit}
     >

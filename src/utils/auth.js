@@ -31,16 +31,18 @@ async function logIn({ email, password }) {
     },
     body: JSON.stringify({ email, password }),
   }).then(handleServerResponse);
+  return res;
 }
 
-function getUserProfile(token) {
-  return fetch(`${baseUrl}/users/me`, {
+async function getUserProfile(token) {
+  const res = await fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(handleServerResponse);
+  });
+  return handleServerResponse(res);
 }
 
 async function editProfile({ name, avatar }, token) {

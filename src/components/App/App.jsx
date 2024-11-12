@@ -12,7 +12,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import AddItemModal from "../../components/AddItemModal/AddItemModal.jsx";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import { getItems, addCardLike, deleteItem } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginModal from "../LoginModal/LoginModal";
@@ -97,13 +97,14 @@ function App() {
     });
   };
 
-  const handleOnAddItem = (item) => {
-    addItem(item)
-      .then((newItem) => {
-        setClothingItems([newItem, ...clothingItems]);
-        closeActiveModal();
-      })
-      .catch((err) => console.log(err));
+  const handleOnAddItem = async (item) => {
+    try {
+      const newItem = await addItem(item);
+      setClothingItems([newItem, ...clothingItems]);
+      closeActiveModal();
+    } catch (err) {
+      return console.log(err);
+    }
   };
 
   async function addItem({ name, weather, imageUrl }) {
@@ -157,21 +158,21 @@ function App() {
   };
 
   const onLogIn = ({ email, password }) => {
+    console.log("login");
     auth.logIn({ email, password }).then((data) => {
-      console.log(data);
-      localStorage.setItem("jwt", data);
+      console.log("data", data);
+
+      localStorage.setItem("jwt", data.token);
       setIsLoggedIn(true);
       setCurrentUser(true);
       closeActiveModal();
       navigate("/profile");
     });
   };
-
-  const onSignOut = () => {
-    token.clearToken();
+  const handleLogOutClick = () => {
+    localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     closeActiveModal();
-    navigate("/");
   };
 
   useEffect(() => {
@@ -268,7 +269,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
-                      onSignOut={onSignOut}
+                      handleLogOutClick={handleLogOutClick}
                       handleEditProfileClick={handleEditProfileClick}
                       isLiked={isLiked}
                       handleCardLike={handleCardLike}
@@ -288,7 +289,7 @@ function App() {
             title="New garment"
             onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
-            onAddItem={handleOnAddItem}
+            addItem={handleOnAddItem}
           />
           <ItemModal
             activeModal={activeModal}

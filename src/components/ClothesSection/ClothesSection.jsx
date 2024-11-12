@@ -20,6 +20,7 @@ function ClothesSection({
           className="clothes-section__add-button"
           onClick={handleAddClick}
         >
+          {" "}
           + Add New
         </button>
       </div>
