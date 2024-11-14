@@ -7,7 +7,6 @@ function ClothesSection({
   handleCardClick,
   handleAddClick,
   clothingItems,
-  isLiked,
   handleCardLike,
   isLoggedIn,
 }) {
@@ -20,7 +19,6 @@ function ClothesSection({
           className="clothes-section__add-button"
           onClick={handleAddClick}
         >
-          {" "}
           + Add New
         </button>
       </div>

@@ -1,13 +1,8 @@
 .modal__input_login {
   margin-top: 15px;
   width: 440px;
-  background: #0000004d;
 }
 
-.modal__submit_signup {
-  color: #0000004d;
-  background-color: #fff;
-  position: absolute;
-  margin-left: 140px;
-  margin-top: 170px;
+.modal__input-password {
+  margin-bottom: 0px;
 }

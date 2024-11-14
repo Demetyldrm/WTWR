@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+
 import "../ModalWithForm/ModalWithForm.css";
 import "./LoginModal.css";
 
-const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onSignUp }) => {
+const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onToggleModal }) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -19,8 +20,8 @@ const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onSignUp }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onLogIn(data);
+    setData({ email: "", password: "" });
   };
 
   return (
@@ -31,6 +32,11 @@ const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onSignUp }) => {
       isOpen={isOpen}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      additionalText={
+        <a className="modal__sign-up-link" onClick={onToggleModal}>
+          or Sign Up
+        </a>
+      }
     >
       <label className="modal__label">
         Email{" "}
@@ -49,7 +55,7 @@ const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onSignUp }) => {
         Password
         <input
           type="password"
-          className="modal__input"
+          className="modal__input modal__input-password"
           id="user-password"
           name="password"
           placeholder="Password"
@@ -58,13 +64,11 @@ const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onSignUp }) => {
           required
         />
       </label>
-      <button
+      {/* <button
         type="button"
         onClick={onSignUp}
         className="modal__submit modal__submit_signup"
-      >
-        or Sign Up
-      </button>
+      ></button> */}
     </ModalWithForm>
   );
 };

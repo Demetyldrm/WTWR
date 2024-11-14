@@ -1,3 +1,5 @@
+import React, { useState, useContext, useEffect } from "react";
+
 import "./Profile.css";
 import SideBar from "../SideBar/SideBar.jsx";
 import ClothesSection from "../ClothesSection/ClothesSection.jsx";

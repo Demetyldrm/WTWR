@@ -45,7 +45,7 @@ async function getUserProfile(token) {
   return handleServerResponse(res);
 }
 
-async function editProfile({ name, avatar }, token) {
+async function handleEditProfile({ name, avatar }, token) {
   const res = await fetch(`${baseUrl}/users/me`, {
     method: "PATCH",
     headers: {
@@ -56,4 +56,4 @@ async function editProfile({ name, avatar }, token) {
   }).then(handleServerResponse);
 }
 
-export { signUp, logIn, getUserProfile, editProfile };
+export { signUp, logIn, getUserProfile, handleEditProfile };

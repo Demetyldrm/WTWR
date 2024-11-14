@@ -5,9 +5,9 @@ import "./RegisterModal.css";
 
 const RegisterModal = ({
   isOpen,
-  onRegister,
+  onSignUp,
+  onToggleModal,
   closeActiveModal,
-  onLogin = () => {},
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,7 +32,7 @@ const RegisterModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onRegister({ email, password, name, avatar });
+    onSignUp({ email, password, name, avatar });
   };
 
   return (
@@ -42,6 +42,11 @@ const RegisterModal = ({
       buttonText="Sign Up"
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      additionalText={
+        <a className="modal__sign-in-link" onClick={onToggleModal}>
+          or Log In
+        </a>
+      }
     >
       <label htmlFor="email" className="modal__label">
         Email*{""}
@@ -86,7 +91,7 @@ const RegisterModal = ({
         Avatar URL*{""}
         <input
           type="url"
-          className="modal__input"
+          className="modal__input modal__input-avatar"
           id="avatar"
           name="avatar"
           placeholder="Avatar URL"
@@ -96,14 +101,14 @@ const RegisterModal = ({
         />
       </label>
 
-      <button
+      {/* <button
         type="button"
         onClick={onLogin}
-        className="modal__submit modal__submit_login modal__submit-SingUp"
+        className="modal__submit modal__submit_login modal__submit_SingUp"
       >
         {" "}
         or Log In
-      </button>
+      </button> */}
     </ModalWithForm>
   );
 };

@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-import avatar from "../../assets/avatar.svg";
-
+import avatar from "../../assets/avatar.png";
 function Header({
   handleAddClick,
   weatherData,
@@ -38,9 +37,7 @@ function Header({
           />
 
           <button
-            onClick={() => {
-              handleAddClick;
-            }}
+            onClick={handleAddClick}
             type="button"
             className="header__add-clothes-btn"
           >

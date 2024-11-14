@@ -12,12 +12,17 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import AddItemModal from "../../components/AddItemModal/AddItemModal.jsx";
-import { getItems, addCardLike, deleteItem } from "../../utils/api.js";
+import { getItems, addItem, addCardLike, deleteItem } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import { signUp, logIn, getUserProfile, editProfile } from "../../utils/auth";
+import {
+  signUp,
+  logIn,
+  getUserProfile,
+  handleEditProfile,
+} from "../../utils/auth";
 import * as auth from "../../utils/auth.js";
 
 function App() {
@@ -91,55 +96,28 @@ function App() {
   };
 
   const onProfileSubmit = ({ name, avatar }) => {
-    editProfile({ name, avatar }).then((res) => {
+    handleEditProfile({ name, avatar }).then((res) => {
       setCurrentUser(res);
       closeActiveModal();
     });
   };
 
-  const handleOnAddItem = async (item) => {
-    try {
-      const newItem = await addItem(item);
-      setClothingItems([newItem, ...clothingItems]);
-      closeActiveModal();
-    } catch (err) {
-      return console.log(err);
-    }
-  };
-
-  async function addItem({ name, weather, imageUrl }) {
+  const handleOnAddItem = async (newItem) => {
     const token = localStorage.getItem("jwt");
-    if (!token) {
-      console.error("No JWT token found. Please log in.");
-      return;
-    }
-
-    try {
-      const response = await fetch(`${baseUrl}/items`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ name, weather, imageUrl }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Server error:", errorData);
-        throw new Error(`Server responded with status: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error("Fetch error:", error.message);
-      throw error;
-    }
-  }
+    const addedItem = await addItem(newItem, token);
+    setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
+    closeActiveModal();
+  };
 
   const handleToggleSwitchState = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
+  };
+
+  const toggleModal = () => {
+    setActiveModal((prevModal) =>
+      prevModal === "login" ? "register" : "login"
+    );
   };
 
   const handleDeleteCardClick = () => {
@@ -166,6 +144,7 @@ function App() {
       setIsLoggedIn(true);
       setCurrentUser(true);
       closeActiveModal();
+      // setData({ email: "", password: "" });
       navigate("/profile");
     });
   };
@@ -253,7 +232,7 @@ function App() {
                 element={
                   <Main
                     weatherData={weatherData}
-                    handleCardClick={handleCardClick}
+                    onCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleCardLike={handleCardLike}
                     isLiked={isLiked}
@@ -266,7 +245,7 @@ function App() {
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
-                      handleCardClick={handleCardClick}
+                      onCardClick={handleCardClick}
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
                       handleLogOutClick={handleLogOutClick}
@@ -287,9 +266,9 @@ function App() {
           <AddItemModal
             buttonText="Add garment"
             title="New garment"
-            onClose={closeActiveModal}
             isOpen={activeModal === "add-garment"}
             addItem={handleOnAddItem}
+            onClose={closeActiveModal}
           />
           <ItemModal
             activeModal={activeModal}
@@ -311,6 +290,8 @@ function App() {
           onSignUp={onSignUp}
           handleLoginModal={handleLoginModal}
           onRegister={onSignUp}
+          isLoggedIn={onLogIn}
+          onToggleModal={toggleModal}
         />
 
         <LoginModal
@@ -318,6 +299,8 @@ function App() {
           onClose={closeActiveModal}
           onLogIn={onLogIn}
           handleRegisterModal={handleRegisterModal}
+          isSignUpOpen={onSignUp}
+          onToggleModal={toggleModal}
         />
 
         <EditProfileModal

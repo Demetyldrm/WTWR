@@ -4,7 +4,11 @@ import "../ModalWithForm/ModalWithForm.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./EditProfileModal.css";
 
-export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
+export default function EditProfileModal({
+  isOpen,
+  closeActiveModal,
+  onProfileSubmit,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -27,7 +31,7 @@ export default function EditProfileModal({ isOpen, onClose, onProfileSubmit }) {
       buttonText="Save Changes"
       title="Change Profile Data"
       isOpen={isOpen}
-      onClose={onClose}
+      onClose={closeActiveModal}
       onSubmit={handleProfileSubmit}
     >
       <label htmlFor="Name" className="modal__label">
