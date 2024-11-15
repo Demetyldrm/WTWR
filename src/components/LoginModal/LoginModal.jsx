@@ -4,7 +4,12 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
 import "./LoginModal.css";
 
-const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onToggleModal }) => {
+const LoginModal = ({
+  isOpen,
+  closeActiveModal,
+  onLogIn,
+  openRegisterModal,
+}) => {
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -32,11 +37,6 @@ const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onToggleModal }) => {
       isOpen={isOpen}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
-      additionalText={
-        <a className="modal__sign-up-link" onClick={onToggleModal}>
-          or Sign Up
-        </a>
-      }
     >
       <label className="modal__label">
         Email{" "}
@@ -64,11 +64,18 @@ const LoginModal = ({ isOpen, closeActiveModal, onLogIn, onToggleModal }) => {
           required
         />
       </label>
-      {/* <button
-        type="button"
-        onClick={onSignUp}
-        className="modal__submit modal__submit_signup"
-      ></button> */}
+      <div className="modal__buttons-wrapper">
+        <button type="submit" className="modal__submit">
+          Log In
+        </button>
+        <button
+          type="button"
+          className="modal__or-signup-btn"
+          onClick={openRegisterModal}
+        >
+          or Sign Up
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

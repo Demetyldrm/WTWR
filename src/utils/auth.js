@@ -11,14 +11,14 @@ export const checkToken = (token) => {
   });
 };
 
-async function signUp({ name, password, email, avatar }) {
+async function signUp({ email, password, name, avatar }) {
   const res = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ name, password, email, avatar }),
+    body: JSON.stringify({ email, password, name, avatar }),
   }).then(handleServerResponse);
 }
 

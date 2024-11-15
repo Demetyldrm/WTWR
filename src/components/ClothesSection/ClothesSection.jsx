@@ -32,7 +32,7 @@ function ClothesSection({
                   key={item._id}
                   item={item}
                   handleCardClick={handleCardClick}
-                  isLiked={isLiked}
+                  // isLiked={isLiked}
                   handleCardLike={handleCardLike}
                   isLoggedIn={isLoggedIn}
                 />

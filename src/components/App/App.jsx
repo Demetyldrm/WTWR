@@ -17,12 +17,7 @@ import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
-import {
-  signUp,
-  logIn,
-  getUserProfile,
-  handleEditProfile,
-} from "../../utils/auth";
+import { signUp, getUserProfile, handleEditProfile } from "../../utils/auth";
 import * as auth from "../../utils/auth.js";
 
 function App() {
@@ -95,7 +90,7 @@ function App() {
       .catch(console.error);
   };
 
-  const onProfileSubmit = ({ name, avatar }) => {
+  const onEditProfileSubmit = ({ name, avatar }) => {
     handleEditProfile({ name, avatar }).then((res) => {
       setCurrentUser(res);
       closeActiveModal();
@@ -114,25 +109,19 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const toggleModal = () => {
-    setActiveModal((prevModal) =>
-      prevModal === "login" ? "register" : "login"
-    );
-  };
-
   const handleDeleteCardClick = () => {
     setActiveModal("delete-confirmation");
   };
-  const onSignUp = ({ name, email, password, avatar }) => {
-    const userProfile = { name, email, password, avatar };
-    signUp(userProfile).then((res) => {
-      console.log(res);
-      setCurrentUser(userProfile);
-      logIn({ email, password });
-      setIsLoggedIn(true);
-      closeActiveModal();
-      navigate("/profile");
-    });
+
+  const onSignUp = ({ email, password, name, avatar }) => {
+    const userProfile = { email, password, name, avatar };
+    signUp(userProfile)
+      .then((data) => {
+        onLogIn({ email, password });
+      })
+      .catch((error) => {
+        console.error("error at signing up", error);
+      });
   };
 
   const onLogIn = ({ email, password }) => {
@@ -141,13 +130,16 @@ function App() {
       console.log("data", data);
 
       localStorage.setItem("jwt", data.token);
-      setIsLoggedIn(true);
-      setCurrentUser(true);
+      getUserProfile(data.token).then((res) => {
+        console.log(res);
+        setCurrentUser(res);
+        setIsLoggedIn(true);
+      });
       closeActiveModal();
-      // setData({ email: "", password: "" });
       navigate("/profile");
     });
   };
+
   const handleLogOutClick = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
@@ -288,25 +280,23 @@ function App() {
           isOpen={activeModal === "signup"}
           onClose={closeActiveModal}
           onSignUp={onSignUp}
-          handleLoginModal={handleLoginModal}
+          openLoginModal={handleLoginModal}
           onRegister={onSignUp}
           isLoggedIn={onLogIn}
-          onToggleModal={toggleModal}
         />
 
         <LoginModal
           isOpen={activeModal === "login"}
           onClose={closeActiveModal}
           onLogIn={onLogIn}
-          handleRegisterModal={handleRegisterModal}
           isSignUpOpen={onSignUp}
-          onToggleModal={toggleModal}
+          openRegisterModal={handleRegisterModal}
         />
 
         <EditProfileModal
           isOpen={activeModal === "edit"}
           onClose={closeActiveModal}
-          onProfileSubmit={onProfileSubmit}
+          onProfileSubmit={onEditProfileSubmit}
         />
       </div>
     </CurrentUserContext.Provider>

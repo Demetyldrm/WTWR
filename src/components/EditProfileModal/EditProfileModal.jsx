@@ -1,30 +1,37 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import "./EditProfileModal.css";
 
-export default function EditProfileModal({
+const EditProfileModal = ({
   isOpen,
   closeActiveModal,
-  onProfileSubmit,
-}) {
-  const currentUser = useContext(CurrentUserContext);
+  onEditProfileSubmit,
+}) => {
   const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const handleNameChange = (e) => {
+    console.log(e.target.value);
+    setName(e.target.value || "");
+  };
 
-  function handleAvatarChange(e) {
-    setAvatar(e.target.value);
-  }
+  const [avatar, setAvatarUrl] = useState("");
+  const handleAvatarChange = (e) => {
+    setAvatarUrl(e.target.value || "");
+  };
+  const currentUser = useContext(CurrentUserContext);
 
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleProfileSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
-    onProfileSubmit({ name, avatar });
+    onEditProfileSubmit({ name, avatar });
   }
+
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name || "");
+      setAvatarUrl(currentUser.avatar || "");
+    }
+  }, [currentUser]);
 
   return (
     <ModalWithForm
@@ -32,7 +39,8 @@ export default function EditProfileModal({
       title="Change Profile Data"
       isOpen={isOpen}
       onClose={closeActiveModal}
-      onSubmit={handleProfileSubmit}
+      onEditProfileSubmit={handleSubmit}
+      name={"editprofile"}
     >
       <label htmlFor="Name" className="modal__label">
         Name*{" "}
@@ -60,6 +68,10 @@ export default function EditProfileModal({
           onChange={handleAvatarChange}
         />
       </label>
+      <button type="submit" className="modal__submit">
+        Save changes
+      </button>
     </ModalWithForm>
   );
-}
+};
+export default EditProfileModal;

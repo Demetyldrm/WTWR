@@ -6,7 +6,7 @@ import "./RegisterModal.css";
 const RegisterModal = ({
   isOpen,
   onSignUp,
-  onToggleModal,
+  openLoginModal = () => {},
   closeActiveModal,
 }) => {
   const [name, setName] = useState("");
@@ -42,11 +42,7 @@ const RegisterModal = ({
       buttonText="Sign Up"
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
-      additionalText={
-        <a className="modal__sign-in-link" onClick={onToggleModal}>
-          or Log In
-        </a>
-      }
+      openLo
     >
       <label htmlFor="email" className="modal__label">
         Email*{""}
@@ -101,14 +97,18 @@ const RegisterModal = ({
         />
       </label>
 
-      {/* <button
-        type="button"
-        onClick={onLogin}
-        className="modal__submit modal__submit_login modal__submit_SingUp"
-      >
-        {" "}
-        or Log In
-      </button> */}
+      <div className="modal__buttons-wrapper">
+        <button type="submit" className="modal__submit">
+          Sign Up
+        </button>
+        <button
+          type="button"
+          className="modal__or-login-btn"
+          onClick={openLoginModal}
+        >
+          or Log In
+        </button>
+      </div>
     </ModalWithForm>
   );
 };

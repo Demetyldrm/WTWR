@@ -118,14 +118,21 @@
   border-radius: 4px 0px 0px 0px;
   opacity: 0px;
 }
-.modal__buttons {
+/* .modal__buttons {
   display: flex;
   justify-content: left;
   align-items: center;
+} */
+.modal__or-signup-btn {
+  border: none;
+  background: transparent;
+  color: #00000080;
+  cursor: pointer;
 }
-.modal__additional-text {
-  margin-left: 12px;
-  margin-top: 30px;
+
+.modal__or-login-btn {
+  border: none;
+  background: transparent;
   color: #00000080;
   cursor: pointer;
 }
