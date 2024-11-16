@@ -7,51 +7,52 @@
   max-width: 498px;
   box-sizing: border-box;
   width: 100%;
+  overflow: hidden;
 }
 
 .modal__footer {
+  padding: 16px; /* Add padding for content below the image */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
   gap: 10px;
-  padding: 0px;
 }
 
 .modal__weather {
-  margin-top: 12px;
-  margin-bottom: 32px;
-  margin-left: 32px;
-  padding: 0px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 12px 0 0 0;
 }
 
 .modal__caption {
-  margin: 20px 0px 0px 32px;
-  font-family: Cabinet Grotesk;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  text-align: left;
+  margin: 0;
 }
 
 .modal__image {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  max-height: 300px;
   object-fit: cover;
   display: block;
   border-radius: 10px 10px 0 0;
 }
 
 .modal__delete {
-  position: relative;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   color: rgba(255, 77, 0, 1);
-  margin: 20px 0px 0px 32px;
-  border: 0;
-  background-color: transparent;
+  border: none;
+  background: none;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
   grid-column: 2/3;
   grid-row: 1;
+  align-self: center;
+  justify-self: end;
+  margin: 0;
+  padding: 0;
 }

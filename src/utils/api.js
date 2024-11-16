@@ -24,37 +24,14 @@ async function addItem({ name, weather, imageUrl }) {
   }).then(handleServerResponse);
 }
 
-async function deleteItem(id) {
-  const token = localStorage.getItem("jwt");
-  return fetch(`${baseUrl}/items/${id}`, {
+function deleteItem(item, token) {
+  return fetch(`${baseUrl}/items/${item._id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then(handleServerResponse);
-}
-
-async function addCardLike(id, token) {
-  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
-  return handleServerResponse(res);
-}
-
-async function removeCardLike(id, token) {
-  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  });
-  return handleServerResponse(res);
 }
 
 export const getUserInfo = (token) => {
@@ -67,4 +44,4 @@ export const getUserInfo = (token) => {
     },
   }).then(handleServerResponse);
 };
-export { getItems, addItem, deleteItem, addCardLike, removeCardLike };
+export { getItems, addItem, deleteItem };

@@ -60,12 +60,25 @@
 
 .header__date-and-location {
   margin: 0;
+  font-family: Cabinet Grotesk;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  white-space: nowrap;
 }
 .header__username {
   margin: 0;
+  font-family: "Cabinet Grotesk";
+  font-size: 20px;
+  line-height: 24.8px;
+  font-weight: 700;
 }
 .header__logo {
   margin-right: 24px;
+  margin-top: 32;
 }
 
 .header__date-and-location {
@@ -82,7 +95,4 @@
   align-items: center;
   text-decoration: none;
   color: black;
-}
-.header__avatar {
-  margin-left: 20px;
 }

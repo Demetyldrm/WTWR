@@ -1,14 +1,14 @@
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
 
 function ClothesSection({
-  handleCardClick,
   handleAddClick,
   clothingItems,
   handleCardLike,
   isLoggedIn,
+  onCardClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
   return (
@@ -31,10 +31,8 @@ function ClothesSection({
                 <ItemCard
                   key={item._id}
                   item={item}
-                  handleCardClick={handleCardClick}
-                  // isLiked={isLiked}
-                  handleCardLike={handleCardLike}
-                  isLoggedIn={isLoggedIn}
+                  onCardClick={onCardClick}
+                  onCardLike={handleCardLike}
                 />
               );
             })}

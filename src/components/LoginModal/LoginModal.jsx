@@ -15,14 +15,6 @@ const LoginModal = ({
     password: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogIn(data);
@@ -31,9 +23,8 @@ const LoginModal = ({
 
   return (
     <ModalWithForm
-      title="Log in"
-      name="login"
-      buttonText="Log in"
+      title="Log In"
+      buttonText="Log In"
       isOpen={isOpen}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
@@ -47,7 +38,9 @@ const LoginModal = ({
           name="email"
           placeholder="Email"
           value={data.email}
-          onChange={handleChange}
+          onChange={(e) =>
+            setData((prevData) => ({ ...prevData, email: e.target.value }))
+          }
           required
         />
       </label>
@@ -60,7 +53,9 @@ const LoginModal = ({
           name="password"
           placeholder="Password"
           value={data.password}
-          onChange={handleChange}
+          onChange={(e) =>
+            setData((prevData) => ({ ...prevData, password: e.target.value }))
+          }
           required
         />
       </label>

@@ -1,49 +1,53 @@
-import { useState, useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./ItemCard.css";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import likeImage from "../../assets/like.png";
 import likedImage from "../../assets/liked.png";
 
-function ItemCard({ item, onCardClick, handleCardLike }) {
-  const { name, imageUrl, likes } = item || {};
+function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
+  const [isLiked, setIsLiked] = useState(false);
+  // const isLiked =
+  //   currentUser &&
+  //   Array.isArray(item.likes) &&
+  //   item.likes.some((id) => id === currentUser._id);
 
-  const isLiked =
-    Array.isArray(item.likes) &&
-    item.likes.some((id) => id === currentUser?._id);
   const handleCardClick = () => {
     onCardClick(item);
   };
 
-  const handleLike = (event) => {
-    event.stopPropagation();
-    if (currentUser) {
-      console.log("like button clicked");
-
-      handleCardLike({ id: item._id, isLiked });
-      console.log(isLiked);
-    }
+  const handleCardLike = (evt) => {
+    evt.preventDefault();
+    onCardLike({ id: item._id, isLiked });
   };
 
-  const itemLikeButtonClassName = isLiked ? "like-button liked" : "like-button";
+  useEffect(() => {
+    const isLiked = item.likes.some((id) => id === currentUser._id);
+
+    {
+      isLiked ? setIsLiked(true) : setIsLiked(false);
+    }
+  }, [item.likes, currentUser._id]);
 
   return (
-    <li className="card" onClick={handleCardClick}>
+    <li className="card">
       <div className="card__header">
-        <h2 className="card__name">{name}</h2>
+        <h2 className="card__name">{item.name}</h2>
         {currentUser && (
-          <button
-            onClick={handleLike}
-            className={itemLikeButtonClassName}
-          ></button>
+          <img
+            className="like-button__icon"
+            src={isLiked ? likedImage : likeImage}
+            alt={isLiked ? "Unlike" : "Like"}
+            onClick={handleCardLike}
+          />
         )}
-        <img
-          className="like-button__icon"
-          src={isLiked ? likedImage : likeImage}
-          alt={isLiked ? "Unlike" : "Like"}
-        />
       </div>
-      <img className="card__image" src={imageUrl} alt={name} />
+      <img
+        onClick={handleCardClick}
+        className="card__image"
+        src={item.imageUrl}
+        alt={item.name}
+      />
     </li>
   );
 }

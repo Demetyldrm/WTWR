@@ -6,29 +6,13 @@ import "./RegisterModal.css";
 const RegisterModal = ({
   isOpen,
   onSignUp,
-  openLoginModal = () => {},
+  openLoginModal,
   closeActiveModal,
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState("");
-
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleEmailChange(e) {
-    setEmail(e.target.value);
-  }
-
-  function handlePasswordChange(e) {
-    setPassword(e.target.value);
-  }
-
-  function handleAvatarChange(e) {
-    setAvatar(e.target.value);
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +24,7 @@ const RegisterModal = ({
       isOpen={isOpen}
       title="Sign Up"
       buttonText="Sign Up"
-      onClose={closeActiveModal}
+      closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
       openLo
     >
@@ -53,7 +37,7 @@ const RegisterModal = ({
           name="email"
           placeholder="Email"
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
@@ -66,7 +50,7 @@ const RegisterModal = ({
           name="password"
           placeholder="Password"
           value={password}
-          onChange={handlePasswordChange}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
@@ -79,7 +63,7 @@ const RegisterModal = ({
           name="name"
           placeholder="Name"
           value={name}
-          onChange={handleNameChange}
+          onChange={(e) => setName(e.target.value)}
           required
         />
       </label>
@@ -91,8 +75,8 @@ const RegisterModal = ({
           id="avatar"
           name="avatar"
           placeholder="Avatar URL"
-          value={avatar || ""}
-          onChange={handleAvatarChange}
+          value={avatar}
+          onChange={(e) => setAvatar(e.target.value)}
           required
         />
       </label>

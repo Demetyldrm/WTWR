@@ -6,13 +6,12 @@ import ClothesSection from "../ClothesSection/ClothesSection.jsx";
 
 function Profile({
   handleAddClick,
-  handleCardClick,
   clothingItems,
   handleEditProfileClick,
-  isLiked,
   handleCardLike,
   isLoggedIn,
   handleLogOutClick,
+  onCardClick,
 }) {
   return (
     <div className="profile">
@@ -27,8 +26,7 @@ function Profile({
         <ClothesSection
           clothingItems={clothingItems}
           handleAddClick={handleAddClick}
-          handleCardClick={handleCardClick}
-          isLiked={isLiked}
+          onCardClick={onCardClick}
           handleCardLike={handleCardLike}
           isLoggedIn={isLoggedIn}
         />

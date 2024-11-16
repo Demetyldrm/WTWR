@@ -1,56 +1,61 @@
-.modal__content_type_delete {
+.modal_questions {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  justify-content: center;
+}
+
+.modal__content_delete {
+  background-color: #fff;
+  position: relative;
+  padding: 28px 28px 36px;
+
+  box-sizing: border-box;
+  max-width: 670px;
+  height: 280px;
+  border-radius: 20px;
 }
 
 .modal__delete__header {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
   font-size: 20px;
-  margin: 0 auto;
-  width: 367px;
-  font-family: Cabinet Grotesk;
-  font-size: 20px;
-  font-weight: 700;
   line-height: 24px;
-  text-align: center;
+  margin-bottom: 0;
+  margin-top: 30px;
+  margin-left: 90px;
+  padding: 0px;
 }
 
-.modal__delete__buttons {
+.modal__question_warning {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin-left: 165px;
+  margin-top: 0;
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+.modal__question_confirm {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background-color: #fff;
+  color: rgba(255, 77, 0, 1);
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+
+.modal__question_cancel {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background-color: #fff;
+}
+
+.modal__delete-buttons {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* padding-top: 40px; */
-  /* gap: 24px; */
-  font-family: "Cabinet-Grotesk", arial, sans-serif;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.modal__delete__btn {
-  border: none;
-  background-color: transparent;
-}
-
-.modal__delete__btn:hover {
-  cursor: pointer;
-}
-
-.modal__delete__btn_type_delete {
-  color: rgba(255, 77, 0, 1);
-  padding-top: 40px;
-}
-
-.modal__delete__btn_type_cancel {
-  font-family: Cabinet Grotesk;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 24px;
-  text-align: left;
-  margin-top: 20px;
-}
-
-.modal__content_type_delete {
-  width: 670px;
-  height: 280px;
 }

@@ -7,8 +7,6 @@ const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
   const [name, setName] = useState("");
   const [imageUrl, setUrl] = useState("");
   const [weather, setSelectedWeatherType] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
 
   const handleNameChange = (e) => {
     console.log(e.target.value);
@@ -26,8 +24,7 @@ const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError(null);
+
     addItem({ name, imageUrl, weather });
     resetForm();
   };
@@ -122,7 +119,7 @@ const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
           Cold
         </label>
       </fieldset>
-      <button type="submit" className="modal__submit">
+      <button type="submit" className="modal__submit ">
         Add garment
       </button>
     </ModalWithForm>

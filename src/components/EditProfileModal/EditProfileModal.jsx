@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
-import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./EditProfileModal.css";
 
 const EditProfileModal = ({
@@ -16,6 +16,8 @@ const EditProfileModal = ({
   };
 
   const [avatar, setAvatarUrl] = useState("");
+  const [data, setData] = useState("");
+
   const handleAvatarChange = (e) => {
     setAvatarUrl(e.target.value || "");
   };
@@ -32,6 +34,10 @@ const EditProfileModal = ({
       setAvatarUrl(currentUser.avatar || "");
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    setData({ name: "", avatar: "" });
+  }, [isOpen]);
 
   return (
     <ModalWithForm

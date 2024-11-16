@@ -56,4 +56,33 @@ async function handleEditProfile({ name, avatar }, token) {
   }).then(handleServerResponse);
 }
 
-export { signUp, logIn, getUserProfile, handleEditProfile };
+async function addCardLike(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+  return handleServerResponse(res);
+}
+
+async function removeCardLike(id, token) {
+  const res = await fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+  return handleServerResponse(res);
+}
+
+export {
+  signUp,
+  logIn,
+  getUserProfile,
+  handleEditProfile,
+  addCardLike,
+  removeCardLike,
+};
