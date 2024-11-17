@@ -28,16 +28,21 @@ const EditProfileModal = ({
     onEditProfileSubmit({ name, avatar });
   }
 
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     setName(currentUser.name || "");
+  //     setAvatarUrl(currentUser.avatar || "");
+  //   }
+  // }, [currentUser]);
+
   useEffect(() => {
+    //   setData({ name: "", avatar: "" });
+    // }, [isOpen]);
     if (currentUser) {
       setName(currentUser.name || "");
       setAvatarUrl(currentUser.avatar || "");
     }
   }, [currentUser]);
-
-  useEffect(() => {
-    setData({ name: "", avatar: "" });
-  }, [isOpen]);
 
   return (
     <ModalWithForm
@@ -53,7 +58,7 @@ const EditProfileModal = ({
         <input
           required
           value={currentUser.name}
-          autoComplete="off"
+          // autoComplete="off"
           type="text"
           className="modal__input"
           id="name"
@@ -66,7 +71,7 @@ const EditProfileModal = ({
         <input
           required
           value={currentUser.avatar}
-          autoComplete="off"
+          // autoComplete="off"
           type="url"
           className="modal__input"
           id="avatar"

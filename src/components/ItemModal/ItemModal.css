@@ -1,17 +1,5 @@
-.modal__content_type_image {
-  background-color: white;
-  padding: 0;
-  position: relative;
-  margin: 0 auto;
-  border-radius: 10px;
-  max-width: 498px;
-  box-sizing: border-box;
-  width: 100%;
-  overflow: hidden;
-}
-
 .modal__footer {
-  padding: 16px; /* Add padding for content below the image */
+  padding: 16px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
@@ -34,10 +22,9 @@
 
 .modal__image {
   width: 100%;
-  height: auto;
+  max-width: 498px;
   max-height: 300px;
   object-fit: cover;
-  display: block;
   border-radius: 10px 10px 0 0;
 }
 
