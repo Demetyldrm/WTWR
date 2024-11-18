@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   font-family: "Cabinet Grotesk";
+  font-weight: 500;
 }
 
 .footer__copyright {

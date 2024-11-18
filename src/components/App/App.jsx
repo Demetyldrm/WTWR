@@ -44,9 +44,10 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
+  console.log(currentUser);
 
   const handleRegisterModal = () => {
-    setActiveModal("signup");
+    setActiveModal("signUp");
   };
   const handleLoginModal = () => {
     setActiveModal("login");
@@ -104,13 +105,13 @@ function App() {
 
   const onEditProfileSubmit = ({ name, avatar }) => {
     const token = localStorage.getItem("jwt");
-    handleEditProfile({ name, avatar })
+    handleEditProfile({ name, avatar }, token)
       .then((res) => {
-        setCurrentUser(res);
+        setCurrentUser({ ...currentUser, ...res });
         closeActiveModal();
       })
       .catch((error) => {
-        console.error("Erro updating profile:", error);
+        console.error("Error updating profile:", error);
       });
   };
 
@@ -133,7 +134,7 @@ function App() {
   const onSignUp = ({ email, password, name, avatar }) => {
     const userProfile = { email, password, name, avatar };
     signUp(userProfile)
-      .then((data) => {
+      .then((res) => {
         onLogIn({ email, password });
       })
       .catch((error) => {
@@ -214,8 +215,8 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      getUserProfile().then((res) => {
-        setCurrentUser(res.data);
+      getUserProfile(token).then((res) => {
+        setCurrentUser(res);
         setIsLoggedIn(true);
       });
     }
@@ -297,7 +298,7 @@ function App() {
           )}
         </CurrentTemperatureUnitContext.Provider>
         <RegisterModal
-          isOpen={activeModal === "signup"}
+          isOpen={activeModal === "signUp"}
           closeActiveModal={closeActiveModal}
           onSignUp={onSignUp}
           openLoginModal={handleLoginModal}

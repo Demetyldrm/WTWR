@@ -9,39 +9,41 @@
   margin-top: 15px;
   overflow: hidden;
 }
-.card__name {
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 15px;
-  margin-left: 121px;
-  margin-right: 121px;
-  margin-top: 0px;
-  width: 72px;
-  font-family: "Cabinet-Grotesk", arial, sans-serif;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  background-color: #fff;
-  border-radius: 4px;
-  padding: 2px 12px;
-  color: rgba(0, 0, 0, 0.6);
+  margin: 0;
+  gap: 10px;
 }
 
+.card__name {
+  top: 15px;
+  margin: 0;
+  background-color: #ffff;
+  padding: 2px 12px;
+  color: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}
 .card__image {
   width: 100%;
-  height: 100%;
-  border: 1px rgba(0, 0, 0, 0.3) solid;
   border-radius: 10px;
   object-fit: cover;
 }
 
 .like-button__icon {
-  position: absolute;
-  margin-left: 230px;
-  margin-bottom: 240px;
-  color: #00000099;
-  border: 2px;
+  position: relative;
+  border: none;
+  background-color: transparent;
   width: 18px;
   height: 15px;
+  padding: 0;
 }
 
 .card__header {

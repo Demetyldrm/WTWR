@@ -12,15 +12,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   //   Array.isArray(item.likes) &&
   //   item.likes.some((id) => id === currentUser._id);
 
-  const handleCardClick = () => {
-    onCardClick(item);
-  };
-
-  const handleCardLike = (evt) => {
-    evt.preventDefault();
-    onCardLike({ id: item._id, isLiked });
-  };
-
   useEffect(() => {
     const isLiked = item.likes.some((id) => id === currentUser._id);
 
@@ -29,15 +20,25 @@ function ItemCard({ item, onCardClick, onCardLike }) {
     }
   }, [item.likes, currentUser._id]);
 
+  const handleCardClick = () => {
+    onCardClick(item);
+  };
+
+  const handleCardLike = () => {
+    setIsLiked(!isLiked);
+    onCardLike(item, isLiked);
+  };
+
   return (
     <li className="card">
       <div className="card__header">
         <h2 className="card__name">{item.name}</h2>
-        {currentUser && (
+        {currentUser._id && (
           <img
-            className="like-button__icon"
+            className={"like-button__icon"}
+            typeof="button"
             src={isLiked ? likedImage : likeImage}
-            alt={isLiked ? "Unlike" : "Like"}
+            alt="Like Button"
             onClick={handleCardLike}
           />
         )}

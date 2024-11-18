@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 import "../ModalWithForm/ModalWithForm.css";
@@ -7,6 +7,7 @@ import "./LoginModal.css";
 const LoginModal = ({
   isOpen,
   closeActiveModal,
+  buttonClass = "modal__submit",
   onLogIn,
   openRegisterModal,
 }) => {
@@ -14,6 +15,12 @@ const LoginModal = ({
     email: "",
     password: "",
   });
+
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
+  useEffect(() => {
+    setIsButtonActive(data.email.trim() !== "" && data.password.trim() !== "");
+  }, [data.email, data.password]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +35,9 @@ const LoginModal = ({
       isOpen={isOpen}
       onClose={closeActiveModal}
       onSubmit={handleSubmit}
+      buttonClass={`modal__submit ${
+        isButtonActive ? "modal__submit_filled" : ""
+      }`}
     >
       <label className="modal__label">
         Email{" "}
@@ -60,7 +70,7 @@ const LoginModal = ({
         />
       </label>
       <div className="modal__buttons-wrapper">
-        <button type="submit" className="modal__submit">
+        <button type="submit" className={buttonClass}>
           Log In
         </button>
         <button

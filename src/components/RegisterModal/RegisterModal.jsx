@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../ModalWithForm/ModalWithForm.css";
 import "./RegisterModal.css";
@@ -6,18 +6,28 @@ import "./RegisterModal.css";
 const RegisterModal = ({
   isOpen,
   onSignUp,
-  openLoginModal,
   closeActiveModal,
+  openLoginModal,
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [isButtonActive, setIsButtonActive] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSignUp({ email, password, name, avatar });
   };
+
+  useEffect(() => {
+    setIsButtonActive(
+      email.trim() !== "" &&
+        password.trim() !== "" &&
+        name.trim() !== "" &&
+        avatar.trim() !== ""
+    );
+  }, [email, password, name, avatar]);
 
   return (
     <ModalWithForm
@@ -26,7 +36,10 @@ const RegisterModal = ({
       buttonText="Sign Up"
       closeActiveModal={closeActiveModal}
       onSubmit={handleSubmit}
-      openLo
+      obuttonClass={`modal__submit ${
+        isButtonActive ? "modal__submit_active" : ""
+      }`}
+      handleCloseModal={closeActiveModal}
     >
       <label htmlFor="email" className="modal__label">
         Email*{""}

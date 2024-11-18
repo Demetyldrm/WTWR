@@ -6,3 +6,8 @@
 .modal__input-password {
   margin-bottom: 0px;
 }
+
+.modal__submit_filled {
+  background-color: black;
+  cursor: pointer;
+}

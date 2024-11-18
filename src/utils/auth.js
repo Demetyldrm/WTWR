@@ -30,8 +30,8 @@ async function logIn({ email, password }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  }).then(handleServerResponse);
-  return res;
+  });
+  return handleServerResponse(res);
 }
 
 async function getUserProfile(token) {
@@ -53,7 +53,8 @@ async function handleEditProfile({ name, avatar }, token) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({ name, avatar }),
-  }).then(handleServerResponse);
+  });
+  return handleServerResponse(res);
 }
 
 async function addCardLike(id, token) {

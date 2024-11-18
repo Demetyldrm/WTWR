@@ -9,35 +9,35 @@ const EditProfileModal = ({
   closeActiveModal,
   onEditProfileSubmit,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
   const [name, setName] = useState("");
+  const [avatar, setAvatarUrl] = useState("");
+
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value || "");
   };
 
-  const [avatar, setAvatarUrl] = useState("");
-  const [data, setData] = useState("");
-
   const handleAvatarChange = (e) => {
     setAvatarUrl(e.target.value || "");
   };
-  const currentUser = useContext(CurrentUserContext);
+
+  const [isButtonActive, setIsButtonActive] = useState(false);
+
+  useEffect(() => {
+    if (name.trim() && avatar.trim()) {
+      setIsButtonActive(true);
+    } else {
+      setIsButtonActive(false);
+    }
+  }, [name, avatar]);
 
   function handleSubmit(e) {
     e.preventDefault();
     onEditProfileSubmit({ name, avatar });
   }
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     setName(currentUser.name || "");
-  //     setAvatarUrl(currentUser.avatar || "");
-  //   }
-  // }, [currentUser]);
-
   useEffect(() => {
-    //   setData({ name: "", avatar: "" });
-    // }, [isOpen]);
     if (currentUser) {
       setName(currentUser.name || "");
       setAvatarUrl(currentUser.avatar || "");
@@ -47,18 +47,20 @@ const EditProfileModal = ({
   return (
     <ModalWithForm
       buttonText="Save Changes"
+      buttonClass={`modal__submit ${
+        isButtonActive ? "modal__submit_active" : ""
+      }`}
       title="Change Profile Data"
       isOpen={isOpen}
       onClose={closeActiveModal}
-      onEditProfileSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       name={"editprofile"}
     >
       <label htmlFor="Name" className="modal__label">
         Name*{" "}
         <input
           required
-          value={currentUser.name}
-          // autoComplete="off"
+          value={name}
           type="text"
           className="modal__input"
           id="name"
@@ -70,16 +72,15 @@ const EditProfileModal = ({
         Avatar*{" "}
         <input
           required
-          value={currentUser.avatar}
-          // autoComplete="off"
+          value={avatar}
           type="url"
-          className="modal__input"
+          className="modal__input modal__input-avatar"
           id="avatar"
           placeholder={avatar}
           onChange={handleAvatarChange}
         />
       </label>
-      <button type="submit" className="modal__submit">
+      <button type="submit" className="modal__submit modal__save-changes">
         Save changes
       </button>
     </ModalWithForm>

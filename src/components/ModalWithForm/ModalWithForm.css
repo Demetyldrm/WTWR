@@ -18,19 +18,15 @@
 .modal_opened {
   visibility: visible;
 }
+
 .modal__content {
-  background-color: white;
+  background-color: #fff;
   position: relative;
-  box-sizing: border-box;
-  border: none;
   padding: 28px 28px 36px;
-  max-width: 496px;
+  max-width: 498px;
+  box-sizing: border-box;
   width: 100%;
-  border-radius: 20px;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 20px;
-  margin: 0 auto;
+  border-radius: 16px;
 }
 
 .modal__title {
@@ -71,6 +67,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .modal__submit {
   width: 124px;
   padding: 8px 16px 8px 16px;
@@ -85,10 +82,23 @@
   line-height: 20px;
   text-align: center;
   margin-top: 32px;
-  transition: linear 5ms background-color;
   background: #0000004d;
+  color: white;
+  cursor: not-allowed;
+  transition: background-color 0.3s ease;
 }
 
+.modal__submit_active {
+  background-color: black;
+  color: #fff;
+  cursor: pointer;
+}
+
+.modal__submit_filled {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
 .modal__submit_disabled {
   background-color: rgba(0, 0, 0, 0.3);
 }

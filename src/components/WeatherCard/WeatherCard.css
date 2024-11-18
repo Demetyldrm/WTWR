@@ -4,6 +4,7 @@
   height: 80px;
   border-radius: 12px;
   overflow: hidden;
+  margin-top: 28px;
 }
 
 .weather-card__temp {
