@@ -70,7 +70,12 @@ const LoginModal = ({
         />
       </label>
       <div className="modal__buttons-wrapper">
-        <button type="submit" className={buttonClass}>
+        <button
+          type="submit"
+          className={`${buttonClass} ${
+            isButtonActive ? "modal__submit_filled" : ""
+          }`}
+        >
           Log In
         </button>
         <button

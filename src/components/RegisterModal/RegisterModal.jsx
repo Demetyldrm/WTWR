@@ -6,6 +6,7 @@ import "./RegisterModal.css";
 const RegisterModal = ({
   isOpen,
   onSignUp,
+  buttonClass = "modal__submit",
   closeActiveModal,
   openLoginModal,
 }) => {
@@ -95,7 +96,12 @@ const RegisterModal = ({
       </label>
 
       <div className="modal__buttons-wrapper">
-        <button type="submit" className="modal__submit">
+        <button
+          type="submit"
+          className={`${buttonClass} ${
+            isButtonActive ? "modal__submit_filled" : ""
+          }`}
+        >
           Sign Up
         </button>
         <button
