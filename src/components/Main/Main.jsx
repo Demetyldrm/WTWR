@@ -12,7 +12,7 @@ function Main({
   isLiked,
   isLoggedIn,
 }) {
-  const { currentTemparatureUnit } = React.useContext(
+  const { currentTemperatureUnit } = React.useContext(
     CurrentTemperatureUnitContext
   );
 
@@ -21,13 +21,13 @@ function Main({
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {weatherData.temp[currentTemparatureUnit]}
-          &deg; {currentTemparatureUnit} / You may want to wear:
+          Today is {weatherData.temp[currentTemperatureUnit]}
+          &deg; {currentTemperatureUnit} / You may want to wear:
         </p>
         <ul className="cards__list">
           {clothingItems
             .filter((item) => {
-              return item.weather === weatherData.warm;
+              return item.weather === weatherData.type;
             })
             .map((item) => {
               return (

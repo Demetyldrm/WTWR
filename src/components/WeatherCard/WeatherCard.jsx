@@ -26,6 +26,7 @@ function WeatherCard({ weatherData }) {
       <p className="weather-card__temp">
         {weatherData.temp[currentTemperatureUnit]} &deg;{" "}
         {currentTemperatureUnit}
+        {""}
       </p>
       <img
         src={weatherOption?.url}

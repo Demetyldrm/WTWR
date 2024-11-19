@@ -4,13 +4,9 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import likeImage from "../../assets/like.png";
 import likedImage from "../../assets/liked.png";
 
-function ItemCard({ item, onCardClick, onCardLike }) {
+function ItemCard({ item, onCardClick }) {
   const currentUser = useContext(CurrentUserContext);
   const [isLiked, setIsLiked] = useState(false);
-  // const isLiked =
-  //   currentUser &&
-  //   Array.isArray(item.likes) &&
-  //   item.likes.some((id) => id === currentUser._id);
 
   useEffect(() => {
     const isLiked = item.likes.some((id) => id === currentUser._id);
@@ -26,7 +22,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
 
   const handleCardLike = () => {
     setIsLiked(!isLiked);
-    onCardLike(item, isLiked);
   };
 
   return (
