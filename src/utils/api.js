@@ -31,7 +31,7 @@ function deleteItem(item, token) {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-  });
+  }).then(handleServerResponse);
 }
 
 export const getUserInfo = (token) => {

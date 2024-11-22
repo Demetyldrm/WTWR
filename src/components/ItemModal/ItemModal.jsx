@@ -6,10 +6,10 @@ import "./ItemModal.css";
 function ItemModal({ isOpen, closeActiveModal, card, handleDeleteCardClick }) {
   const currentUser = useContext(CurrentUserContext);
   const { name, imageUrl, weather, owner } = card || {};
-  const isOwner = currentUser && currentUser.id === card.ownerId;
-  const itemDeleteButton = `modal__delete ${
-    isOwner ? "modal__delete" : "modal__delete-hidden"
-  }`;
+  const isOwner = currentUser && currentUser?._id === card?.owner;
+  // const itemDeleteButton = `modal__delete ${
+  //   isOwner ? "modal__delete" : "modal__delete-hidden"
+  // }`;
   return (
     <div className={`modal ${isOpen === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
@@ -27,7 +27,7 @@ function ItemModal({ isOpen, closeActiveModal, card, handleDeleteCardClick }) {
             <button
               type="button"
               onClick={handleDeleteCardClick}
-              className={itemDeleteButton}
+              className="modal__delete"
             >
               Delete item
             </button>

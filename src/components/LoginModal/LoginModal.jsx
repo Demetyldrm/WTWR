@@ -22,10 +22,13 @@ const LoginModal = ({
     setIsButtonActive(data.email.trim() !== "" && data.password.trim() !== "");
   }, [data.email, data.password]);
 
+  useEffect(() => {
+    setData({ email: "", password: "" });
+  }, [isOpen]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogIn(data);
-    setData({ email: "", password: "" });
   };
 
   return (

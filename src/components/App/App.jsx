@@ -70,6 +70,10 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleDeleteCardClick = () => {
+    setActiveModal("delete-confirmation");
+  };
+
   const handleCardLike = (_id, isLiked) => {
     const token = localStorage.getItem("jwt");
     return !isLiked
@@ -77,13 +81,13 @@ function App() {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === _id ? updatedCard : item))
           );
-          setIsLiked(true);
+          setIsLiked(true).catch(console.error);
         })
       : removeCardLike(_id, token).then((updatedCard) => {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === _id ? updatedCard : item))
           );
-          setIsLiked(false);
+          setIsLiked(false).catch(console.error);
         });
   };
 
@@ -127,10 +131,6 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  const handleDeleteCardClick = () => {
-    setActiveModal("delete-confirmation");
-  };
-
   const onSignUp = ({ email, password, name, avatar }) => {
     const userProfile = { email, password, name, avatar };
     signUp(userProfile)
@@ -144,18 +144,21 @@ function App() {
 
   const onLogIn = ({ email, password }) => {
     console.log("login");
-    auth.logIn({ email, password }).then((data) => {
-      console.log("data", data);
+    auth
+      .logIn({ email, password })
+      .then((data) => {
+        console.log("data", data);
 
-      localStorage.setItem("jwt", data.token);
-      getUserProfile(data.token).then((res) => {
-        console.log(res);
-        setCurrentUser(res);
-        setIsLoggedIn(true);
-        navigate("/profile");
-      });
-      closeActiveModal();
-    });
+        localStorage.setItem("jwt", data.token);
+        getUserProfile(data.token).then((res) => {
+          console.log(res);
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+          navigate("/profile");
+        });
+        closeActiveModal();
+      })
+      .catch(console.error);
   };
 
   const handleLogOutClick = () => {
@@ -178,8 +181,8 @@ function App() {
       .then((data) => {
         setClothingItems(data.reverse());
       })
-      .catch((e) => {
-        console.log(e);
+      .catch((error) => {
+        console.log(error);
       });
   }, []);
 

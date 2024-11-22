@@ -23,11 +23,16 @@ const AddItemModal = ({ closeActiveModal, addItem, isOpen }) => {
     setSelectedWeatherType(e.target.value);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addItem({ name, imageUrl, weather });
-    resetForm();
+    addItem({ name, imageUrl, weather, resetForm });
   };
 
   function resetForm() {
