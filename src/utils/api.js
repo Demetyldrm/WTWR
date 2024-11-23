@@ -33,8 +33,7 @@ function deleteItem(item, token) {
     },
   }).then(handleServerResponse);
 }
-
-export const getUserInfo = (token) => {
+function getUserInfo(token) {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -43,5 +42,5 @@ export const getUserInfo = (token) => {
       Authorization: `Bearer ${token}`,
     },
   }).then(handleServerResponse);
-};
-export { getItems, addItem, deleteItem };
+}
+export { getItems, addItem, deleteItem, getUserInfo };

@@ -44,7 +44,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const handleRegisterModal = () => {
     setActiveModal("signUp");
@@ -77,18 +77,22 @@ function App() {
   const handleCardLike = (_id, isLiked) => {
     const token = localStorage.getItem("jwt");
     return !isLiked
-      ? addCardLike(_id, token).then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === _id ? updatedCard : item))
-          );
-          setIsLiked(true).catch(console.error);
-        })
-      : removeCardLike(_id, token).then((updatedCard) => {
-          setClothingItems((cards) =>
-            cards.map((item) => (item._id === _id ? updatedCard : item))
-          );
-          setIsLiked(false).catch(console.error);
-        });
+      ? addCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+            setIsLiked(true);
+          })
+          .catch(console.error)
+      : removeCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+            setIsLiked(false);
+          })
+          .catch(console.error);
   };
 
   const handleCardDelete = () => {
@@ -119,11 +123,18 @@ function App() {
       });
   };
 
-  const handleAddItem = async (newItem) => {
+  const handleAddItem = (newItem) => {
     const token = localStorage.getItem("jwt");
-    const addedItem = await addItem(newItem, token);
-    setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
-    closeActiveModal();
+
+    addItem(newItem, token)
+      .then((addedItem) => {
+        setClothingItems((prevItems) => [addedItem.data, ...prevItems]);
+
+        closeActiveModal();
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
   };
 
   const handleToggleSwitchState = () => {
@@ -162,9 +173,19 @@ function App() {
   };
 
   const handleLogOutClick = () => {
-    localStorage.removeItem("jwt");
-    setIsLoggedIn(false);
-    closeActiveModal();
+    try {
+      localStorage.removeItem("jwt");
+      Promise.resolve()
+        .then(() => {
+          setIsLoggedIn(false);
+          closeActiveModal();
+        })
+        .catch((error) => {
+          console.error("Error during logout:", error);
+        });
+    } catch (error) {
+      console.error("Unexpected error during logout:", error);
+    }
   };
 
   useEffect(() => {
@@ -218,10 +239,15 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
-      getUserProfile(token).then((res) => {
-        setCurrentUser(res);
-        setIsLoggedIn(true);
-      });
+      getUserProfile(token)
+        .then((res) => {
+          setCurrentUser(res);
+          setIsLoggedIn(true);
+        })
+        .catch((error) => {
+          console.error("Error fetching user profile:", error);
+          setIsLoggedIn(false);
+        });
     }
   }, []);
 
