@@ -42,9 +42,8 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [isLiked, setIsLiked] = useState(false);
+  // const [isLiked, setIsLiked] = useState(false);
   const navigate = useNavigate();
-  // console.log(currentUser);
 
   const handleRegisterModal = () => {
     setActiveModal("signUp");
@@ -74,25 +73,26 @@ function App() {
     setActiveModal("delete-confirmation");
   };
 
-  const handleCardLike = (_id, isLiked) => {
+  const handleCardLike = ({ id, isLiked }) => {
     const token = localStorage.getItem("jwt");
-    return !isLiked
-      ? addCardLike(_id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item))
-            );
-            setIsLiked(true);
-          })
-          .catch(console.error)
-      : removeCardLike(_id, token)
-          .then((updatedCard) => {
-            setClothingItems((cards) =>
-              cards.map((item) => (item._id === _id ? updatedCard : item))
-            );
-            setIsLiked(false);
-          })
-          .catch(console.error);
+    if (!isLiked) {
+      addCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+          console.log("Item liked", updatedCard);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      removeCardLike(id, token)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+        })
+        .catch(console.error);
+    }
   };
 
   const handleCardDelete = () => {
@@ -275,7 +275,6 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleCardLike={handleCardLike}
-                    isLiked={isLiked}
                     isLoggedIn={isLoggedIn}
                     onCardLike={handleCardLike}
                   />
@@ -290,8 +289,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
                       handleEditProfileClick={handleEditProfileClick}
-                      isLiked={isLiked}
-                      onCardLike={handleCardLike}
+                      handleCardLike={handleCardLike}
                       isLoggedIn={isLoggedIn}
                       handleLogOutClick={handleLogOutClick}
                     />

@@ -11,6 +11,7 @@ function Main({
   handleCardLike,
   isLiked,
   isLoggedIn,
+  onCardLike,
 }) {
   const { currentTemperatureUnit } = React.useContext(
     CurrentTemperatureUnitContext
@@ -39,6 +40,7 @@ function Main({
                   handleCardLike={handleCardLike}
                   isLiked={isLiked}
                   isLoggedIn={isLoggedIn}
+                  onCardLike={onCardLike}
                 />
               );
             })}
