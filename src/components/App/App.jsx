@@ -42,7 +42,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  // const [isLiked, setIsLiked] = useState(false);
+
   const navigate = useNavigate();
 
   const handleRegisterModal = () => {
