@@ -42,7 +42,7 @@ const RegisterModal = ({
       }`}
       handleCloseModal={closeActiveModal}
     >
-      <label htmlFor="email" className="modal__label">
+      <label className="modal__label">
         Email*{""}
         <input
           type="email"
@@ -55,7 +55,7 @@ const RegisterModal = ({
           required
         />
       </label>
-      <label htmlFor="password" className="modal__label">
+      <label className="modal__label">
         Password*{""}
         <input
           type="password"

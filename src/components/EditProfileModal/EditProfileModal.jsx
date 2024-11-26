@@ -56,7 +56,7 @@ const EditProfileModal = ({
       onSubmit={handleSubmit}
       name={"editprofile"}
     >
-      <label htmlFor="Name" className="modal__label">
+      <label className="modal__label">
         Name*{" "}
         <input
           required
@@ -68,7 +68,7 @@ const EditProfileModal = ({
           onChange={handleNameChange}
         />
       </label>
-      <label htmlFor="avatar" className="modal__label">
+      <label className="modal__label">
         Avatar*{" "}
         <input
           required
