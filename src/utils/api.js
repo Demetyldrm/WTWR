@@ -1,4 +1,7 @@
-export const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.wtwrbydy.crabdance.com"
+    : "http://localhost:3001";
 
 export const handleServerResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Error:${res.status}`);
@@ -43,4 +46,4 @@ function getUserInfo(token) {
     },
   }).then(handleServerResponse);
 }
-export { getItems, addItem, deleteItem, getUserInfo };
+export { getItems, addItem, deleteItem, getUserInfo, baseUrl };
