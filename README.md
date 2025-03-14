@@ -1,5 +1,5 @@
 # To run the project
-npm install — To download Node modules
+npm install — To download Node modules.
 npm run start — Launch the server in production mode.
 npm run dev — Run the server in development mode with hot-reloading.
 
