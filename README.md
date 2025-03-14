@@ -22,3 +22,4 @@ Currently, two official plugins are available:
 <img width="1512" alt="079ACC4E-F49F-4EC4-829E-59C9BC0A67A0" src="https://github.com/user-attachments/assets/07e5cc81-4258-43a2-9e52-9083e5ab6bed" />
 <img width="1512" alt="2AD21325-C4B8-4457-88EA-7873BCB9B32C" src="https://github.com/user-attachments/assets/4bbdb1db-3e6a-4678-bf54-83175b6de94f" />
 <img width="1512" alt="86F90695-9F0A-4374-A2CC-7C828BE9CB33" src="https://github.com/user-attachments/assets/8a5af8bc-442d-46dd-b145-ed8a519e2f32" />
+<img width="1512" alt="2D284972-6D05-4382-AD6D-B1ED56CE5C8C" src="https://github.com/user-attachments/assets/32f3bde5-a365-4334-9303-6e5f2b04853a" />
